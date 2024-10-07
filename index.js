@@ -14,7 +14,7 @@ const app = express();
 
 
 
-app.use(bodyParse.json()); 
+app.use(bodyParse.json());
 app.use(bodyParse.urlencoded({ extended: true }));
 app.use(cors());
 
@@ -25,15 +25,16 @@ app.use(errorHandler);
 
 moogooes
   .connect(process.env.MONGODB_URI)
-  .then(() => {
+  .then((result) => {
+    console.log("DB:", result)
     const server = app.listen(PORT, () => {
       console.log(
         `Server has been connected with port http://localhost:${PORT}/api/v1`
       );
-    });
+    })
 
-  
-  
+
+
   })
   .catch((err) => {
     console.log("err", err);
